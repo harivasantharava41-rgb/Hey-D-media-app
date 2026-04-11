@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Heyd Media</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body class="auth-page">
+
+    <div class="auth-box">
+        <div class="auth-logo">📱 Heyd Media</div>
+        <p class="auth-tagline">
+            Share your world with friends!
+        </p>
+
+        {% if error %}
+        <div class="error-msg">❌ {{ error }}</div>
+        {% endif %}
+
+        <form action="/login" method="POST">
+            <input type="email" name="email"
+                   placeholder="Email Address"
+                   class="input-field" required>
+            <input type="password" name="password"
+                   placeholder="Password"
+                   class="input-field" required>
+            <button type="submit" class="btn btn-full">
+                Login
+            </button>
+        </form>
+
+        <p class="auth-switch">
+            Don't have an account?
+            <a href="/signup">Sign Up</a>
+        </p>
+    </div>
+
+    <footer>
+        <p>© 2025 Heyd Media App |
+        Developed by Harivasanth Arava</p>
+    </footer>
+
+</body>
+</html>
