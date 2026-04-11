@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heyd Media - Home</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">📱 Heyd Media</div>
+        <div class="nav-right">
+            <span>👤 Welcome, {{ user }}</span>
+            <a href="/profile/{{ user }}" class="btn-small">Profile</a>
+            <a href="/logout" class="btn-small btn-red">Logout</a>
+        </div>
+    </nav>
+
+    <div class="upload-box">
+        <h3>📸 Share Something</h3>
+        <form action="/upload" method="POST"
+              enctype="multipart/form-data">
+            <input type="text" name="caption"
+                   placeholder="What's on your mind?"
+                   class="input-field">
+            <input type="file" name="media"
+                   accept="image/*,video/*"
+                   class="input-field">
+            <button type="submit" class="btn">Post</button>
+        </form>
+    </div>
+
+    <div class="feed">
+        {% if posts %}
+            {% for post in posts %}
+            <div class="post-card">
+                <div class="post-header">
+                    <span class="avatar">👤</span>
+                    <strong>{{ post.username }}</strong>
+                </div>
+                {% if post.media_url %}
+                <img src="{{ post.media_url }}"
+                     class="post-media" alt="post">
+                {% endif %}
+                <div class="post-body">
+                    <p>{{ post.caption }}</p>
+                </div>
+                <div class="post-actions">
+                    <a href="/like/{{ post.id }}"
+                       class="action-btn">❤️ Like</a>
+                    <a href="/follow/{{ post.user_id }}"
+                       class="action-btn">➕ Follow</a>
+                </div>
+                <form action="/comment/{{ post.id }}"
+                      method="POST" class="comment-form">
+                    <input type="text" name="comment"
+                           placeholder="Add a comment..."
+                           class="input-field-sm">
+                    <button type="submit"
+                            class="btn-small">Post</button>
+                </form>
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-feed">
+                <p>No posts yet. Be the first to post! 🎉</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>© 2025 Heyd Media App |
+        Developed by Harivasanth Arava</p>
+    </footer>
+
+</body>
+</html>
