@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Heyd Media</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">📱 Heyd Media</div>
+        <div class="nav-right">
+            <a href="/" class="btn-small">🏠 Home</a>
+            <a href="/logout"
+               class="btn-small btn-red">Logout</a>
+        </div>
+    </nav>
+
+    <div class="profile-header">
+        <div class="profile-avatar">👤</div>
+        <div class="profile-info">
+            <h2>{{ profile_user.username }}</h2>
+            <p>{{ profile_user.email }}</p>
+            <div class="profile-stats">
+                <span>
+                    <strong>{{ posts|length }}</strong>
+                    Posts
+                </span>
+                <span><strong>0</strong> Followers</span>
+                <span><strong>0</strong> Following</span>
+            </div>
+            <a href="/follow/{{ profile_user.id }}"
+               class="btn">➕ Follow</a>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+        {% if posts %}
+            {% for post in posts %}
+            <div class="grid-item">
+                {% if post.media_url %}
+                <img src="{{ post.media_url }}"
+                     alt="post" class="grid-img">
+                {% else %}
+                <div class="grid-caption">
+                    {{ post.caption }}
+                </div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        {% else %}
+            <div class="empty-feed">
+                <p>No posts yet!</p>
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>© 2025 Heyd Media App |
+        Developed by Harivasanth Arava</p>
+    </footer>
+
+</body>
+</html>
