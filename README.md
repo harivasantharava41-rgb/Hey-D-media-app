@@ -105,3 +105,669 @@ Harivasanth Arava
 🔗 LinkedIn
 🎓 MCA Cloud Computing — Jain University, Bengaluru
 ---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heyd Media — Share Your World</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --pink: #e91e8c;
+    --pink-dark: #c2185b;
+    --pink-light: #ff69b4;
+    --bg: #0a0a0a;
+    --card: #111111;
+    --card2: #1a1a2e;
+    --border: #2a2a4e;
+    --text: #ffffff;
+    --muted: #888888;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 1000;
+    background: rgba(10,10,10,0.95);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 40px;
+    backdrop-filter: blur(12px);
+  }
+
+  .nav-logo { font-size: 20px; font-weight: 700; color: var(--pink); }
+
+  .nav-links {
+    display: flex;
+    gap: 24px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-links a {
+    color: #aaa;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .nav-links a:hover { color: var(--pink); }
+
+  .nav-btn {
+    background: var(--pink) !important;
+    color: #fff !important;
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-weight: 700 !important;
+  }
+
+  .nav-btn:hover { background: var(--pink-dark) !important; }
+
+  /* Hero */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 100px 60px 60px;
+    gap: 60px;
+    background:
+      radial-gradient(ellipse at 10% 50%, rgba(233,30,140,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse at 90% 20%, rgba(233,30,140,0.08) 0%, transparent 50%),
+      #0a0a0a;
+  }
+
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(233,30,140,0.12);
+    border: 1px solid rgba(233,30,140,0.3);
+    color: var(--pink);
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 24px;
+  }
+
+  .hero h1 {
+    font-size: clamp(42px, 6vw, 72px);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 20px;
+  }
+
+  .gradient {
+    background: linear-gradient(135deg, var(--pink), #ff69b4);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero p {
+    font-size: 17px;
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 36px;
+    max-width: 480px;
+  }
+
+  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
+
+  .btn-pink {
+    background: var(--pink);
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.3s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-pink:hover {
+    background: var(--pink-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(233,30,140,0.35);
+  }
+
+  .btn-ghost {
+    background: transparent;
+    color: #ccc;
+    padding: 14px 28px;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+
+  .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
+
+  .hero-stats {
+    display: flex;
+    gap: 32px;
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+
+  .stat .num { font-size: 28px; font-weight: 700; color: var(--pink); display: block; }
+  .stat .lbl { font-size: 12px; color: var(--muted); }
+
+  /* Phone Mockup */
+  .hero-right { display: flex; justify-content: center; }
+
+  .phone-mockup {
+    width: 280px;
+    background: #111;
+    border: 2px solid var(--border);
+    border-radius: 40px;
+    padding: 20px 16px;
+    box-shadow: 0 30px 80px rgba(233,30,140,0.2);
+  }
+
+  .phone-notch {
+    width: 80px; height: 6px;
+    background: #333;
+    border-radius: 3px;
+    margin: 0 auto 16px;
+  }
+
+  .phone-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 14px;
+    padding: 0 4px;
+  }
+
+  .phone-header .logo { font-size: 16px; font-weight: 700; color: var(--pink); }
+
+  .phone-post {
+    background: #1a1a2e;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border: 1px solid var(--border);
+  }
+
+  .post-user { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+
+  .post-avatar {
+    width: 28px; height: 28px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .post-username { font-size: 11px; font-weight: 700; }
+  .post-time { font-size: 9px; color: var(--muted); }
+
+  .post-img {
+    width: 100%; height: 90px;
+    background: linear-gradient(135deg, #1a0830, #2a0050);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 28px;
+    margin-bottom: 8px;
+  }
+
+  .post-caption { font-size: 10px; color: #ccc; margin-bottom: 8px; }
+
+  .post-actions { display: flex; gap: 12px; font-size: 10px; color: var(--muted); }
+  .post-actions span { cursor: pointer; }
+  .post-actions span:hover { color: var(--pink); }
+
+  /* Sections */
+  section { padding: 80px 60px; }
+
+  .section-header { text-align: center; margin-bottom: 50px; }
+
+  .section-tag {
+    font-size: 11px;
+    color: var(--pink);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .section-header h2 { font-size: 44px; font-weight: 700; }
+
+  /* Features */
+  #features { background: #0d0d0d; }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .feature-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 24px;
+    transition: all 0.3s;
+  }
+
+  .feature-card:hover {
+    border-color: var(--pink);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(233,30,140,0.15);
+  }
+
+  .feature-icon {
+    width: 48px; height: 48px;
+    background: rgba(233,30,140,0.12);
+    border: 1px solid rgba(233,30,140,0.3);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    margin-bottom: 16px;
+  }
+
+  .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
+  .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+
+  /* Tech Stack */
+  #tech { background: #0a0a0a; }
+
+  .tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 16px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .tech-card {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 16px;
+    text-align: center;
+    transition: all 0.3s;
+  }
+
+  .tech-card:hover { border-color: var(--pink); transform: translateY(-3px); }
+  .tech-card .t-icon { font-size: 28px; display: block; margin-bottom: 8px; }
+  .tech-card .t-name { font-size: 12px; font-weight: 700; color: #fff; display: block; }
+  .tech-card .t-role { font-size: 10px; color: var(--muted); display: block; margin-top: 3px; }
+
+  /* Preview */
+  #preview { background: #0d0d0d; }
+
+  .preview-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .preview-box {
+    background: var(--card2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 32px;
+  }
+
+  .preview-box h3 { font-size: 20px; font-weight: 700; color: var(--pink); margin-bottom: 20px; text-align: center; }
+
+  .form-group { margin-bottom: 14px; }
+  .form-label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
+
+  .form-input {
+    width: 100%;
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 11px 14px;
+    color: #fff;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .form-input:focus { border-color: var(--pink); }
+
+  .divider {
+    text-align: center;
+    color: var(--muted);
+    font-size: 13px;
+    margin: 16px 0;
+    position: relative;
+  }
+
+  .divider::before, .divider::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 42%;
+    height: 1px;
+    background: var(--border);
+  }
+
+  .divider::before { left: 0; }
+  .divider::after { right: 0; }
+
+  .switch-text { text-align: center; font-size: 13px; color: var(--muted); margin-top: 14px; }
+  .switch-text a { color: var(--pink); text-decoration: none; font-weight: 700; }
+
+  /* Feed */
+  .feed-preview { display: flex; flex-direction: column; gap: 12px; }
+
+  .feed-post {
+    background: #0a0a0a;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px;
+  }
+
+  .feed-post-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+
+  .feed-avatar {
+    width: 32px; height: 32px;
+    background: var(--pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+  }
+
+  .feed-username { font-size: 13px; font-weight: 700; }
+  .feed-time { font-size: 11px; color: var(--muted); }
+
+  .feed-img {
+    width: 100%; height: 80px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+
+  .feed-caption { font-size: 12px; color: #ccc; margin-bottom: 8px; }
+  .feed-actions { display: flex; gap: 16px; font-size: 12px; color: var(--muted); }
+  .feed-actions span { cursor: pointer; }
+  .feed-actions span:hover { color: var(--pink); }
+
+  /* Footer */
+  footer {
+    background: #050505;
+    border-top: 1px solid var(--border);
+    padding: 40px;
+    text-align: center;
+  }
+
+  .footer-logo { font-size: 24px; font-weight: 700; color: var(--pink); margin-bottom: 12px; }
+  footer p { font-size: 13px; color: var(--muted); line-height: 1.8; }
+  footer a { color: var(--pink); text-decoration: none; }
+
+  .scroll-top {
+    position: fixed;
+    bottom: 30px; right: 30px;
+    background: var(--pink);
+    color: #fff;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s;
+    box-shadow: 0 4px 16px rgba(233,30,140,0.4);
+  }
+
+  .scroll-top:hover { background: var(--pink-dark); transform: translateY(-3px); }
+
+  .success-msg {
+    display: none;
+    background: rgba(233,30,140,0.1);
+    border: 1px solid var(--pink);
+    color: var(--pink-light);
+    padding: 12px;
+    border-radius: 6px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    margin-top: 10px;
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">📱 Heyd Media</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#features">Features</a></li>
+    <li><a href="#tech">Tech Stack</a></li>
+    <li><a href="#preview">Preview</a></li>
+    <li><a href="#preview" class="nav-btn">Get Started</a></li>
+  </ul>
+</nav>
+
+<section id="home" class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">📱 Full Stack Social Media App</div>
+    <h1>Share Your <span class="gradient">World</span> With Everyone</h1>
+    <p>A modern social media platform where you can share photos, videos, connect with friends, like posts and follow people — built with Python Flask, Django and MySQL.</p>
+    <div class="hero-btns">
+      <a href="#preview" class="btn-pink">🚀 Get Started</a>
+      <a href="#features" class="btn-ghost">✨ See Features</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><span class="num">7+</span><span class="lbl">Features</span></div>
+      <div class="stat"><span class="num">10+</span><span class="lbl">Tech Stack</span></div>
+      <div class="stat"><span class="num">6mo</span><span class="lbl">Built In</span></div>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <div class="phone-mockup">
+      <div class="phone-notch"></div>
+      <div class="phone-header">
+        <span class="logo">📱 Heyd</span>
+        <span>🔔 ✉️</span>
+      </div>
+      <div class="phone-post">
+        <div class="post-user">
+          <div class="post-avatar">H</div>
+          <div>
+            <div class="post-username">harivasanth</div>
+            <div class="post-time">2 mins ago</div>
+          </div>
+        </div>
+        <div class="post-img">🚀</div>
+        <div class="post-caption">Learning DevOps & Cloud Engineering!</div>
+        <div class="post-actions">
+          <span>❤️ 24 likes</span>
+          <span>💬 8 comments</span>
+          <span>➕ Follow</span>
+        </div>
+      </div>
+      <div class="phone-post">
+        <div class="post-user">
+          <div class="post-avatar" style="background:#8b5cf6">K</div>
+          <div>
+            <div class="post-username">karthikeya</div>
+            <div class="post-time">5 mins ago</div>
+          </div>
+        </div>
+        <div class="post-img" style="background:linear-gradient(135deg,#0d2040,#1a4080)">☁️</div>
+        <div class="post-caption">AWS EC2 deployment successful! 🎉</div>
+        <div class="post-actions">
+          <span>❤️ 18 likes</span>
+          <span>💬 5 comments</span>
+          <span>➕ Follow</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="features">
+  <div class="section-header">
+    <span class="section-tag">✨ What We Offer</span>
+    <h2>App Features</h2>
+  </div>
+  <div class="features-grid">
+    <div class="feature-card"><div class="feature-icon">👤</div><h3>User Authentication</h3><p>Secure registration and login system with session management and password protection.</p></div>
+    <div class="feature-card"><div class="feature-icon">📸</div><h3>Photo & Video Upload</h3><p>Share your moments by uploading photos and videos directly to your feed.</p></div>
+    <div class="feature-card"><div class="feature-icon">❤️</div><h3>Like Posts</h3><p>Show appreciation for content by liking posts from people you follow.</p></div>
+    <div class="feature-card"><div class="feature-icon">💬</div><h3>Comments</h3><p>Engage with posts by leaving comments and starting conversations.</p></div>
+    <div class="feature-card"><div class="feature-icon">➕</div><h3>Follow System</h3><p>Follow and unfollow users to curate your personalized feed.</p></div>
+    <div class="feature-card"><div class="feature-icon">📋</div><h3>User Profiles</h3><p>View user profiles with all their posts, followers and following count.</p></div>
+    <div class="feature-card"><div class="feature-icon">📰</div><h3>Live Feed</h3><p>Real-time feed showing latest posts from all users in the platform.</p></div>
+    <div class="feature-card"><div class="feature-icon">🚀</div><h3>CI/CD Deployment</h3><p>Automated deployment using Jenkins pipeline with Docker on AWS EC2.</p></div>
+  </div>
+</section>
+
+<section id="tech">
+  <div class="section-header">
+    <span class="section-tag">🛠️ Built With</span>
+    <h2>Technology Stack</h2>
+  </div>
+  <div class="tech-grid">
+    <div class="tech-card"><span class="t-icon">🐍</span><span class="t-name">Python</span><span class="t-role">Language</span></div>
+    <div class="tech-card"><span class="t-icon">🌶️</span><span class="t-name">Flask</span><span class="t-role">Framework</span></div>
+    <div class="tech-card"><span class="t-icon">🎯</span><span class="t-name">Django</span><span class="t-role">Backend</span></div>
+    <div class="tech-card"><span class="t-icon">⚡</span><span class="t-name">JavaScript</span><span class="t-role">Frontend</span></div>
+    <div class="tech-card"><span class="t-icon">🌐</span><span class="t-name">HTML5</span><span class="t-role">Markup</span></div>
+    <div class="tech-card"><span class="t-icon">🎨</span><span class="t-name">CSS3</span><span class="t-role">Styling</span></div>
+    <div class="tech-card"><span class="t-icon">🗄️</span><span class="t-name">MySQL</span><span class="t-role">Database</span></div>
+    <div class="tech-card"><span class="t-icon">☁️</span><span class="t-name">AWS EC2</span><span class="t-role">Cloud</span></div>
+    <div class="tech-card"><span class="t-icon">🐳</span><span class="t-name">Docker</span><span class="t-role">Container</span></div>
+    <div class="tech-card"><span class="t-icon">⚙️</span><span class="t-name">Jenkins</span><span class="t-role">CI/CD</span></div>
+    <div class="tech-card"><span class="t-icon">🔍</span><span class="t-name">SonarQube</span><span class="t-role">Code Quality</span></div>
+    <div class="tech-card"><span class="t-icon">🐙</span><span class="t-name">GitHub</span><span class="t-role">Version Control</span></div>
+  </div>
+</section>
+
+<section id="preview">
+  <div class="section-header">
+    <span class="section-tag">👀 App Preview</span>
+    <h2>See It In Action</h2>
+  </div>
+  <div class="preview-grid">
+    <div class="preview-box">
+      <h3>📱 Login</h3>
+      <div class="form-group">
+        <label class="form-label">Email Address</label>
+        <input type="email" class="form-input" placeholder="hariarava41@gmail.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Password</label>
+        <input type="password" class="form-input" placeholder="••••••••">
+      </div>
+      <button class="btn-pink" style="width:100%;justify-content:center;padding:13px"
+        onclick="document.getElementById('login-msg').style.display='block'">
+        Login to Heyd Media
+      </button>
+      <div class="success-msg" id="login-msg">✅ Login Successful! Welcome back!</div>
+      <div class="divider">or</div>
+      <button class="btn-ghost" style="width:100%;text-align:center;padding:13px;cursor:pointer"
+        onclick="document.getElementById('signup-msg').style.display='block'">
+        Create New Account
+      </button>
+      <div class="success-msg" id="signup-msg">🎉 Account Created! Welcome to Heyd Media!</div>
+      <div class="switch-text">By signing up you agree to our <a href="#">Terms</a></div>
+    </div>
+
+    <div class="preview-box">
+      <h3>📰 Live Feed</h3>
+      <div class="feed-preview">
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar">H</div>
+            <div>
+              <div class="feed-username">harivasanth</div>
+              <div class="feed-time">Just now</div>
+            </div>
+          </div>
+          <div class="feed-img" style="background:linear-gradient(135deg,#1a0830,#3a0060)">🚀</div>
+          <div class="feed-caption">Just deployed my DevOps project on AWS! 🎉</div>
+          <div class="feed-actions">
+            <span onclick="this.textContent='❤️ 25 likes'">❤️ 24 likes</span>
+            <span>💬 8 comments</span>
+            <span>↗️ Share</span>
+          </div>
+        </div>
+        <div class="feed-post">
+          <div class="feed-post-header">
+            <div class="feed-avatar" style="background:#8b5cf6">K</div>
+            <div>
+              <div class="feed-username">karthikeya</div>
+              <div class="feed-time">5 mins ago</div>
+            </div>
+          </div>
+          <div class="feed-img" style="background:linear-gradient(135deg,#0d2040,#1a4080)">☁️</div>
+          <div class="feed-caption">AWS Cloud setup complete! Docker running 🐳</div>
+          <div class="feed-actions">
+            <span onclick="this.textContent='❤️ 19 likes'">❤️ 18 likes</span>
+            <span>💬 5 comments</span>
+            <span>↗️ Share</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">📱 Heyd Media</div>
+  <p>Full-Stack Social Media Platform · Python Flask · Django · MySQL · AWS · Docker</p>
+  <p style="margin-top:10px">© 2025 Heyd Media App | Developed by
+    <a href="https://github.com/harivasantharava41-rgb/Heyd-media-app">Harivasanth Arava</a>
+  </p>
+  <p style="margin-top:6px;font-size:11px">MCA Cloud Computing · Jain University, Bengaluru</p>
+</footer>
+
+<a href="#home" class="scroll-top">↑</a>
+
+</body>
+</html>
