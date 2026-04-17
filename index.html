@@ -1,666 +1,1257 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Heyd Media — Share Your World</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<title>Heyd Media</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --pink: #e91e8c;
-    --pink-dark: #c2185b;
-    --pink-light: #ff69b4;
-    --bg: #0a0a0a;
-    --card: #111111;
-    --card2: #1a1a2e;
-    --border: #2a2a4e;
-    --text: #ffffff;
-    --muted: #888888;
-  }
-
-  * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: 'DM Sans', sans-serif;
-    overflow-x: hidden;
-  }
-
-  nav {
-    position: fixed;
-    top: 0; left: 0; right: 0;
-    z-index: 1000;
-    background: rgba(10,10,10,0.95);
-    border-bottom: 1px solid var(--border);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 14px 40px;
-    backdrop-filter: blur(12px);
-  }
-
-  .nav-logo { font-size: 20px; font-weight: 700; color: var(--pink); }
-
-  .nav-links {
-    display: flex;
-    gap: 24px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-links a {
-    color: #aaa;
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-
-  .nav-links a:hover { color: var(--pink); }
-
-  .nav-btn {
-    background: var(--pink) !important;
-    color: #fff !important;
-    padding: 8px 20px;
-    border-radius: 6px;
-    font-weight: 700 !important;
-  }
-
-  .nav-btn:hover { background: var(--pink-dark) !important; }
-
-  /* Hero */
-  .hero {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: center;
-    padding: 100px 60px 60px;
-    gap: 60px;
-    background:
-      radial-gradient(ellipse at 10% 50%, rgba(233,30,140,0.12) 0%, transparent 60%),
-      radial-gradient(ellipse at 90% 20%, rgba(233,30,140,0.08) 0%, transparent 50%),
-      #0a0a0a;
-  }
-
-  .hero-tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    background: rgba(233,30,140,0.12);
-    border: 1px solid rgba(233,30,140,0.3);
-    color: var(--pink);
-    padding: 6px 16px;
-    border-radius: 20px;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    margin-bottom: 24px;
-  }
-
-  .hero h1 {
-    font-size: clamp(42px, 6vw, 72px);
-    font-weight: 700;
-    line-height: 1.1;
-    margin-bottom: 20px;
-  }
-
-  .gradient {
-    background: linear-gradient(135deg, var(--pink), #ff69b4);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero p {
-    font-size: 17px;
-    color: var(--muted);
-    line-height: 1.7;
-    margin-bottom: 36px;
-    max-width: 480px;
-  }
-
-  .hero-btns { display: flex; gap: 14px; flex-wrap: wrap; }
-
-  .btn-pink {
-    background: var(--pink);
-    color: #fff;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 15px;
-    transition: all 0.3s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    border: none;
-    cursor: pointer;
-  }
-
-  .btn-pink:hover {
-    background: var(--pink-dark);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 24px rgba(233,30,140,0.35);
-  }
-
-  .btn-ghost {
-    background: transparent;
-    color: #ccc;
-    padding: 14px 28px;
-    border-radius: 8px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 15px;
-    border: 1px solid var(--border);
-    transition: all 0.3s;
-  }
-
-  .btn-ghost:hover { border-color: var(--pink); color: var(--pink); }
-
-  .hero-stats {
-    display: flex;
-    gap: 32px;
-    margin-top: 48px;
-    padding-top: 32px;
-    border-top: 1px solid var(--border);
-  }
-
-  .stat .num { font-size: 28px; font-weight: 700; color: var(--pink); display: block; }
-  .stat .lbl { font-size: 12px; color: var(--muted); }
-
-  /* Phone Mockup */
-  .hero-right { display: flex; justify-content: center; }
-
-  .phone-mockup {
-    width: 280px;
-    background: #111;
-    border: 2px solid var(--border);
-    border-radius: 40px;
-    padding: 20px 16px;
-    box-shadow: 0 30px 80px rgba(233,30,140,0.2);
-  }
-
-  .phone-notch {
-    width: 80px; height: 6px;
-    background: #333;
-    border-radius: 3px;
-    margin: 0 auto 16px;
-  }
-
-  .phone-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 14px;
-    padding: 0 4px;
-  }
-
-  .phone-header .logo { font-size: 16px; font-weight: 700; color: var(--pink); }
-
-  .phone-post {
-    background: #1a1a2e;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
-    border: 1px solid var(--border);
-  }
-
-  .post-user { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
-
-  .post-avatar {
-    width: 28px; height: 28px;
-    background: var(--pink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 12px;
-    font-weight: 700;
-    color: #fff;
-  }
-
-  .post-username { font-size: 11px; font-weight: 700; }
-  .post-time { font-size: 9px; color: var(--muted); }
-
-  .post-img {
-    width: 100%; height: 90px;
-    background: linear-gradient(135deg, #1a0830, #2a0050);
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 28px;
-    margin-bottom: 8px;
-  }
-
-  .post-caption { font-size: 10px; color: #ccc; margin-bottom: 8px; }
-
-  .post-actions { display: flex; gap: 12px; font-size: 10px; color: var(--muted); }
-  .post-actions span { cursor: pointer; }
-  .post-actions span:hover { color: var(--pink); }
-
-  /* Sections */
-  section { padding: 80px 60px; }
-
-  .section-header { text-align: center; margin-bottom: 50px; }
-
-  .section-tag {
-    font-size: 11px;
-    color: var(--pink);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    font-weight: 700;
-    display: block;
-    margin-bottom: 12px;
-  }
-
-  .section-header h2 { font-size: 44px; font-weight: 700; }
-
-  /* Features */
-  #features { background: #0d0d0d; }
-
-  .features-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 20px;
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-
-  .feature-card {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 28px 24px;
-    transition: all 0.3s;
-  }
-
-  .feature-card:hover {
-    border-color: var(--pink);
-    transform: translateY(-4px);
-    box-shadow: 0 12px 40px rgba(233,30,140,0.15);
-  }
-
-  .feature-icon {
-    width: 48px; height: 48px;
-    background: rgba(233,30,140,0.12);
-    border: 1px solid rgba(233,30,140,0.3);
-    border-radius: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-    margin-bottom: 16px;
-  }
-
-  .feature-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 8px; }
-  .feature-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
-
-  /* Tech Stack */
-  #tech { background: #0a0a0a; }
-
-  .tech-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 16px;
-    max-width: 1000px;
-    margin: 0 auto;
-  }
-
-  .tech-card {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px 16px;
-    text-align: center;
-    transition: all 0.3s;
-  }
-
-  .tech-card:hover { border-color: var(--pink); transform: translateY(-3px); }
-  .tech-card .t-icon { font-size: 28px; display: block; margin-bottom: 8px; }
-  .tech-card .t-name { font-size: 12px; font-weight: 700; color: #fff; display: block; }
-  .tech-card .t-role { font-size: 10px; color: var(--muted); display: block; margin-top: 3px; }
-
-  /* Preview */
-  #preview { background: #0d0d0d; }
-
-  .preview-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
-    max-width: 900px;
-    margin: 0 auto;
-  }
-
-  .preview-box {
-    background: var(--card2);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 32px;
-  }
-
-  .preview-box h3 { font-size: 20px; font-weight: 700; color: var(--pink); margin-bottom: 20px; text-align: center; }
-
-  .form-group { margin-bottom: 14px; }
-  .form-label { font-size: 11px; color: var(--muted); display: block; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 1px; }
-
-  .form-input {
-    width: 100%;
-    background: #0a0a0a;
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 11px 14px;
-    color: #fff;
-    font-size: 14px;
-    font-family: 'DM Sans', sans-serif;
-    outline: none;
-    transition: border-color 0.2s;
-  }
-
-  .form-input:focus { border-color: var(--pink); }
-
-  .divider {
-    text-align: center;
-    color: var(--muted);
-    font-size: 13px;
-    margin: 16px 0;
-    position: relative;
-  }
-
-  .divider::before, .divider::after {
-    content: '';
-    position: absolute;
-    top: 50%;
-    width: 42%;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .divider::before { left: 0; }
-  .divider::after { right: 0; }
-
-  .switch-text { text-align: center; font-size: 13px; color: var(--muted); margin-top: 14px; }
-  .switch-text a { color: var(--pink); text-decoration: none; font-weight: 700; }
-
-  /* Feed */
-  .feed-preview { display: flex; flex-direction: column; gap: 12px; }
-
-  .feed-post {
-    background: #0a0a0a;
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 14px;
-  }
-
-  .feed-post-header { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
-
-  .feed-avatar {
-    width: 32px; height: 32px;
-    background: var(--pink);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 14px;
-    font-weight: 700;
-    color: #fff;
-    flex-shrink: 0;
-  }
-
-  .feed-username { font-size: 13px; font-weight: 700; }
-  .feed-time { font-size: 11px; color: var(--muted); }
-
-  .feed-img {
-    width: 100%; height: 80px;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    margin-bottom: 8px;
-  }
-
-  .feed-caption { font-size: 12px; color: #ccc; margin-bottom: 8px; }
-  .feed-actions { display: flex; gap: 16px; font-size: 12px; color: var(--muted); }
-  .feed-actions span { cursor: pointer; }
-  .feed-actions span:hover { color: var(--pink); }
-
-  /* Footer */
-  footer {
-    background: #050505;
-    border-top: 1px solid var(--border);
-    padding: 40px;
-    text-align: center;
-  }
-
-  .footer-logo { font-size: 24px; font-weight: 700; color: var(--pink); margin-bottom: 12px; }
-  footer p { font-size: 13px; color: var(--muted); line-height: 1.8; }
-  footer a { color: var(--pink); text-decoration: none; }
-
-  .scroll-top {
-    position: fixed;
-    bottom: 30px; right: 30px;
-    background: var(--pink);
-    color: #fff;
-    width: 44px; height: 44px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 20px;
-    cursor: pointer;
-    text-decoration: none;
-    transition: all 0.3s;
-    box-shadow: 0 4px 16px rgba(233,30,140,0.4);
-  }
-
-  .scroll-top:hover { background: var(--pink-dark); transform: translateY(-3px); }
-
-  .success-msg {
-    display: none;
-    background: rgba(233,30,140,0.1);
-    border: 1px solid var(--pink);
-    color: var(--pink-light);
-    padding: 12px;
-    border-radius: 6px;
-    text-align: center;
-    font-size: 13px;
-    font-weight: 700;
-    margin-top: 10px;
-  }
+:root {
+  --pink: #e91e8c;
+  --pink2: #ff4db8;
+  --pink-dim: rgba(233,30,140,0.12);
+  --bg: #fafafa;
+  --white: #ffffff;
+  --card: #ffffff;
+  --border: #efefef;
+  --text: #1a1a1a;
+  --muted: #8e8e8e;
+  --light: #f5f5f5;
+  --sidebar-w: 240px;
+  --font: 'DM Sans', sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:var(--font);background:var(--bg);color:var(--text);min-height:100vh;}
+
+/* ── AUTH SCREENS ── */
+.auth-screen{display:none;min-height:100vh;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#fff5fb 0%,#fff 50%,#f5f0ff 100%);}
+.auth-screen.active{display:flex;}
+
+.auth-box{background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:40px 36px;width:400px;box-shadow:0 4px 30px rgba(0,0,0,0.06);}
+
+.auth-logo{text-align:center;margin-bottom:28px;}
+.auth-logo .logo-text{font-size:32px;font-weight:700;
+  background:linear-gradient(135deg,var(--pink),#9b59b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.auth-logo p{font-size:13px;color:var(--muted);margin-top:4px;}
+
+.auth-box h2{font-size:20px;font-weight:700;margin-bottom:6px;}
+.auth-box .sub{font-size:13px;color:var(--muted);margin-bottom:24px;}
+
+.form-group{margin-bottom:14px;}
+.form-group label{font-size:12px;font-weight:600;color:var(--muted);
+  text-transform:uppercase;letter-spacing:0.5px;display:block;margin-bottom:6px;}
+.form-group input{width:100%;padding:12px 14px;border:1.5px solid var(--border);
+  border-radius:10px;font-size:14px;font-family:var(--font);
+  outline:none;transition:border 0.2s;background:#fff;color:var(--text);}
+.form-group input:focus{border-color:var(--pink);}
+
+.btn-main{width:100%;padding:13px;background:var(--pink);color:#fff;
+  border:none;border-radius:10px;font-size:15px;font-weight:700;
+  font-family:var(--font);cursor:pointer;transition:all 0.2s;margin-top:4px;}
+.btn-main:hover{background:#c2185b;transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(233,30,140,0.3);}
+
+.auth-switch{text-align:center;font-size:13px;color:var(--muted);margin-top:20px;}
+.auth-switch a{color:var(--pink);text-decoration:none;font-weight:600;cursor:pointer;}
+
+.divider{display:flex;align-items:center;gap:12px;margin:18px 0;}
+.divider span{font-size:12px;color:var(--muted);}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* ── MAIN APP ── */
+#app{display:none;}
+#app.active{display:flex;min-height:100vh;}
+
+/* Sidebar */
+.sidebar{width:var(--sidebar-w);background:var(--white);border-right:1px solid var(--border);
+  padding:20px 0;position:fixed;top:0;left:0;bottom:0;z-index:100;
+  display:flex;flex-direction:column;}
+
+.sidebar-logo{padding:14px 24px 24px;font-size:24px;font-weight:700;
+  background:linear-gradient(135deg,var(--pink),#9b59b6);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+
+.nav-item{display:flex;align-items:center;gap:14px;padding:13px 24px;
+  cursor:pointer;border-radius:12px;margin:2px 10px;
+  font-size:15px;font-weight:500;color:var(--text);transition:all 0.15s;
+  text-decoration:none;}
+.nav-item:hover{background:var(--light);}
+.nav-item.active{background:var(--pink-dim);color:var(--pink);font-weight:700;}
+.nav-item .nav-icon{font-size:22px;width:26px;text-align:center;}
+.nav-item .notif-badge{background:var(--pink);color:#fff;border-radius:10px;
+  font-size:10px;font-weight:700;padding:1px 6px;margin-left:auto;}
+
+.sidebar-user{margin-top:auto;padding:16px 24px;border-top:1px solid var(--border);
+  display:flex;align-items:center;gap:12px;cursor:pointer;}
+.sidebar-user:hover{background:var(--light);}
+.s-avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(135deg,var(--pink),#9b59b6);
+  display:flex;align-items:center;justify-content:center;
+  font-size:15px;font-weight:700;color:#fff;flex-shrink:0;}
+.s-name{font-size:14px;font-weight:600;}
+.s-handle{font-size:12px;color:var(--muted);}
+.s-logout{margin-left:auto;font-size:18px;color:var(--muted);}
+
+/* Main content */
+.main{margin-left:var(--sidebar-w);flex:1;min-height:100vh;}
+
+/* ── PAGES ── */
+.page{display:none;padding:30px;}
+.page.active{display:block;}
+
+/* ── FEED ── */
+.feed-layout{display:grid;grid-template-columns:1fr 320px;gap:30px;max-width:960px;margin:0 auto;}
+
+.stories-bar{background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:16px;margin-bottom:20px;display:flex;gap:16px;overflow-x:auto;}
+.story{display:flex;flex-direction:column;align-items:center;gap:6px;cursor:pointer;flex-shrink:0;}
+.story-ring{width:58px;height:58px;border-radius:50%;
+  background:linear-gradient(135deg,var(--pink),#f9a825);
+  padding:2px;display:flex;align-items:center;justify-content:center;}
+.story-ring.add{background:var(--light);border:2px dashed var(--border);}
+.story-inner{width:52px;height:52px;border-radius:50%;background:var(--light);
+  display:flex;align-items:center;justify-content:center;
+  font-size:20px;border:2px solid var(--white);}
+.story-name{font-size:10px;color:var(--muted);text-align:center;max-width:58px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+
+/* Create post box */
+.create-box{background:var(--white);border:1px solid var(--border);border-radius:16px;
+  padding:16px;margin-bottom:20px;}
+.create-input-row{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+.create-input{flex:1;padding:11px 16px;background:var(--light);border:none;
+  border-radius:24px;font-size:14px;font-family:var(--font);outline:none;color:var(--text);}
+.create-input::placeholder{color:var(--muted);}
+.create-actions{display:flex;gap:8px;align-items:center;}
+.create-btn{padding:6px 14px;border:none;border-radius:20px;font-size:13px;font-weight:600;
+  font-family:var(--font);cursor:pointer;display:flex;align-items:center;gap:5px;transition:all 0.2s;}
+.create-btn.media{background:var(--light);color:var(--text);}
+.create-btn.media:hover{background:var(--border);}
+.create-btn.post{background:var(--pink);color:#fff;margin-left:auto;}
+.create-btn.post:hover{background:#c2185b;}
+
+/* Post card */
+.post-card{background:var(--white);border:1px solid var(--border);
+  border-radius:16px;margin-bottom:16px;overflow:hidden;}
+.post-header{display:flex;align-items:center;gap:10px;padding:14px 16px;}
+.post-avatar{width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:#fff;flex-shrink:0;}
+.post-user-info{flex:1;}
+.post-username{font-size:14px;font-weight:700;}
+.post-time{font-size:12px;color:var(--muted);}
+.post-menu{font-size:20px;color:var(--muted);cursor:pointer;padding:4px 8px;
+  border-radius:8px;transition:background 0.2s;}
+.post-menu:hover{background:var(--light);}
+
+.post-media{width:100%;max-height:420px;object-fit:cover;display:block;}
+.post-media-emoji{width:100%;height:240px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:80px;background:linear-gradient(135deg,#f8f0ff,#fff0f8);}
+
+.post-body{padding:14px 16px;}
+.post-caption{font-size:14px;line-height:1.6;margin-bottom:10px;}
+.post-caption .username-tag{font-weight:700;}
+
+.post-actions{display:flex;align-items:center;gap:4px;margin-bottom:10px;}
+.action-btn{background:none;border:none;cursor:pointer;
+  display:flex;align-items:center;gap:5px;padding:6px 10px;
+  border-radius:8px;font-size:13px;font-weight:600;font-family:var(--font);
+  color:var(--muted);transition:all 0.2s;}
+.action-btn:hover{background:var(--light);}
+.action-btn.liked{color:var(--pink);}
+.action-btn .icon{font-size:18px;}
+
+.post-likes{font-size:13px;font-weight:700;margin-bottom:6px;}
+.post-comment-input{display:flex;align-items:center;gap:8px;padding-top:10px;
+  border-top:1px solid var(--border);}
+.comment-in{flex:1;padding:8px 14px;background:var(--light);border:none;
+  border-radius:20px;font-size:13px;font-family:var(--font);outline:none;color:var(--text);}
+.comment-in::placeholder{color:var(--muted);}
+.comment-send{background:var(--pink);color:#fff;border:none;
+  width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;transition:all 0.2s;}
+.comment-send:hover{background:#c2185b;}
+
+.comments-list{margin-top:8px;}
+.comment-item{display:flex;gap:8px;margin-bottom:8px;}
+.comment-av{width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:#fff;flex-shrink:0;}
+.comment-content{flex:1;}
+.comment-user{font-size:12px;font-weight:700;}
+.comment-text{font-size:13px;color:var(--text);}
+.comment-time{font-size:11px;color:var(--muted);}
+
+/* Right sidebar */
+.right-sidebar{}
+.widget{background:var(--white);border:1px solid var(--border);
+  border-radius:16px;padding:16px;margin-bottom:16px;}
+.widget-title{font-size:14px;font-weight:700;margin-bottom:14px;
+  display:flex;align-items:center;justify-content:space-between;}
+.widget-title a{font-size:12px;color:var(--pink);cursor:pointer;font-weight:600;}
+
+.suggest-user{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.su-av{width:36px;height:36px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:14px;font-weight:700;color:#fff;}
+.su-name{font-size:13px;font-weight:700;flex:1;}
+.su-handle{font-size:11px;color:var(--muted);}
+.follow-btn{background:var(--pink-dim);color:var(--pink);border:none;
+  padding:5px 14px;border-radius:16px;font-size:12px;font-weight:700;
+  font-family:var(--font);cursor:pointer;transition:all 0.2s;}
+.follow-btn:hover{background:var(--pink);color:#fff;}
+.follow-btn.following{background:var(--light);color:var(--muted);}
+
+/* ── EXPLORE ── */
+.explore-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:900px;margin:0 auto;}
+.explore-item{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;position:relative;}
+.explore-item:hover .explore-overlay{opacity:1;}
+.explore-img{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:48px;}
+.explore-overlay{position:absolute;inset:0;background:rgba(0,0,0,0.4);
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  opacity:0;transition:opacity 0.2s;color:#fff;font-weight:700;font-size:14px;}
+
+/* ── PROFILE ── */
+.profile-header{max-width:800px;margin:0 auto 30px;background:var(--white);
+  border:1px solid var(--border);border-radius:16px;padding:28px;}
+.profile-top{display:flex;align-items:center;gap:32px;margin-bottom:24px;}
+.profile-big-av{width:96px;height:96px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:38px;font-weight:700;color:#fff;flex-shrink:0;}
+.profile-info h2{font-size:22px;font-weight:700;margin-bottom:4px;}
+.profile-handle{font-size:14px;color:var(--muted);margin-bottom:12px;}
+.profile-bio{font-size:14px;line-height:1.6;color:var(--text);margin-bottom:14px;}
+.profile-stats{display:flex;gap:28px;}
+.p-stat{text-align:center;}
+.p-stat-num{font-size:18px;font-weight:700;display:block;}
+.p-stat-lbl{font-size:12px;color:var(--muted);}
+.profile-actions{display:flex;gap:10px;margin-top:16px;}
+.edit-btn{padding:9px 22px;border-radius:10px;border:1.5px solid var(--border);
+  background:#fff;font-size:14px;font-weight:700;font-family:var(--font);
+  cursor:pointer;transition:all 0.2s;}
+.edit-btn:hover{background:var(--light);}
+
+.profile-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:3px;max-width:800px;margin:0 auto;}
+.pg-item{aspect-ratio:1;border-radius:8px;overflow:hidden;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;font-size:44px;position:relative;}
+.pg-item:hover .explore-overlay{opacity:1;}
+
+/* ── NOTIFICATIONS ── */
+.notif-list{max-width:600px;margin:0 auto;}
+.notif-item{display:flex;align-items:center;gap:12px;padding:14px 16px;
+  background:var(--white);border:1px solid var(--border);border-radius:12px;
+  margin-bottom:10px;transition:all 0.2s;}
+.notif-item:hover{border-color:var(--pink);transform:translateX(4px);}
+.notif-item.unread{background:#fff5fb;}
+.notif-av{width:42px;height:42px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;font-weight:700;color:#fff;flex-shrink:0;}
+.notif-text{flex:1;font-size:14px;line-height:1.5;}
+.notif-text strong{font-weight:700;}
+.notif-time{font-size:12px;color:var(--muted);}
+.notif-icon{font-size:24px;}
+
+/* ── SETTINGS ── */
+.settings-wrap{max-width:600px;margin:0 auto;}
+.settings-section{background:var(--white);border:1px solid var(--border);
+  border-radius:16px;padding:20px;margin-bottom:16px;}
+.settings-section h3{font-size:16px;font-weight:700;margin-bottom:16px;
+  padding-bottom:12px;border-bottom:1px solid var(--border);}
+.setting-row{display:flex;align-items:center;justify-content:space-between;
+  padding:12px 0;border-bottom:1px solid var(--border);}
+.setting-row:last-child{border-bottom:none;}
+.setting-label{font-size:14px;font-weight:500;}
+.setting-desc{font-size:12px;color:var(--muted);margin-top:2px;}
+
+/* Toggle */
+.toggle{width:48px;height:26px;background:var(--border);border-radius:13px;
+  cursor:pointer;position:relative;transition:background 0.2s;flex-shrink:0;}
+.toggle.on{background:var(--pink);}
+.toggle::after{content:'';position:absolute;width:20px;height:20px;background:#fff;
+  border-radius:50%;top:3px;left:3px;transition:transform 0.2s;
+  box-shadow:0 1px 4px rgba(0,0,0,0.2);}
+.toggle.on::after{transform:translateX(22px);}
+
+.settings-input{width:100%;padding:11px 14px;border:1.5px solid var(--border);
+  border-radius:10px;font-size:14px;font-family:var(--font);
+  outline:none;transition:border 0.2s;margin-top:8px;}
+.settings-input:focus{border-color:var(--pink);}
+.save-btn{background:var(--pink);color:#fff;border:none;
+  padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;
+  font-family:var(--font);cursor:pointer;margin-top:14px;transition:all 0.2s;}
+.save-btn:hover{background:#c2185b;}
+.danger-btn{background:#fff;color:#e74c3c;border:1.5px solid #e74c3c;
+  padding:11px 24px;border-radius:10px;font-size:14px;font-weight:700;
+  font-family:var(--font);cursor:pointer;transition:all 0.2s;}
+.danger-btn:hover{background:#e74c3c;color:#fff;}
+
+/* Page header */
+.page-header{display:flex;align-items:center;justify-content:space-between;
+  max-width:960px;margin:0 auto 24px;}
+.page-header h1{font-size:24px;font-weight:700;}
+.page-header .sub{font-size:14px;color:var(--muted);margin-top:2px;}
+
+/* Toast notification */
+.toast{position:fixed;bottom:30px;left:50%;transform:translateX(-50%) translateY(100px);
+  background:var(--text);color:#fff;padding:12px 24px;border-radius:24px;
+  font-size:14px;font-weight:600;z-index:9999;transition:transform 0.3s;
+  box-shadow:0 4px 20px rgba(0,0,0,0.2);}
+.toast.show{transform:translateX(-50%) translateY(0);}
+
+/* Modal */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);
+  z-index:500;align-items:center;justify-content:center;}
+.modal-overlay.active{display:flex;}
+.modal{background:var(--white);border-radius:20px;padding:28px;width:480px;
+  max-width:90vw;box-shadow:0 20px 60px rgba(0,0,0,0.15);}
+.modal h3{font-size:18px;font-weight:700;margin-bottom:6px;}
+.modal .modal-sub{font-size:13px;color:var(--muted);margin-bottom:20px;}
+.modal-actions{display:flex;gap:10px;margin-top:20px;}
+.modal-cancel{flex:1;padding:11px;background:var(--light);color:var(--text);
+  border:none;border-radius:10px;font-size:14px;font-weight:700;
+  font-family:var(--font);cursor:pointer;}
+.modal-confirm{flex:1;padding:11px;background:var(--pink);color:#fff;
+  border:none;border-radius:10px;font-size:14px;font-weight:700;
+  font-family:var(--font);cursor:pointer;}
+
+/* Emoji picker for create post */
+.emoji-row{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0;}
+.emoji-pick{font-size:24px;cursor:pointer;padding:4px 8px;border-radius:8px;transition:background 0.15s;}
+.emoji-pick:hover{background:var(--light);}
+
+/* Scrollbar */
+::-webkit-scrollbar{width:6px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:3px;}
+::-webkit-scrollbar-thumb:hover{background:var(--muted);}
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="nav-logo">📱 Heyd Media</div>
-  <ul class="nav-links">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#features">Features</a></li>
-    <li><a href="#tech">Tech Stack</a></li>
-    <li><a href="#preview">Preview</a></li>
-    <li><a href="#preview" class="nav-btn">Get Started</a></li>
-  </ul>
-</nav>
-
-<section id="home" class="hero">
-  <div class="hero-left">
-    <div class="hero-tag">📱 Full Stack Social Media App</div>
-    <h1>Share Your <span class="gradient">World</span> With Everyone</h1>
-    <p>A modern social media platform where you can share photos, videos, connect with friends, like posts and follow people — built with Python Flask, Django and MySQL.</p>
-    <div class="hero-btns">
-      <a href="#preview" class="btn-pink">🚀 Get Started</a>
-      <a href="#features" class="btn-ghost">✨ See Features</a>
+<!-- ═══════════ LOGIN PAGE ═══════════ -->
+<div class="auth-screen active" id="loginScreen">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="logo-text">Heyd Media</div>
+      <p>Share your world with friends</p>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="num">7+</span><span class="lbl">Features</span></div>
-      <div class="stat"><span class="num">10+</span><span class="lbl">Tech Stack</span></div>
-      <div class="stat"><span class="num">6mo</span><span class="lbl">Built In</span></div>
+    <h2>Welcome back 👋</h2>
+    <p class="sub">Sign in to continue</p>
+    <div class="form-group">
+      <label>Email or Username</label>
+      <input type="text" id="loginUser" placeholder="Enter your email or username">
     </div>
-  </div>
-
-  <div class="hero-right">
-    <div class="phone-mockup">
-      <div class="phone-notch"></div>
-      <div class="phone-header">
-        <span class="logo">📱 Heyd</span>
-        <span>🔔 ✉️</span>
-      </div>
-      <div class="phone-post">
-        <div class="post-user">
-          <div class="post-avatar">H</div>
-          <div>
-            <div class="post-username">harivasanth</div>
-            <div class="post-time">2 mins ago</div>
-          </div>
-        </div>
-        <div class="post-img">🚀</div>
-        <div class="post-caption">Learning DevOps & Cloud Engineering!</div>
-        <div class="post-actions">
-          <span>❤️ 24 likes</span>
-          <span>💬 8 comments</span>
-          <span>➕ Follow</span>
-        </div>
-      </div>
-      <div class="phone-post">
-        <div class="post-user">
-          <div class="post-avatar" style="background:#8b5cf6">K</div>
-          <div>
-            <div class="post-username">karthikeya</div>
-            <div class="post-time">5 mins ago</div>
-          </div>
-        </div>
-        <div class="post-img" style="background:linear-gradient(135deg,#0d2040,#1a4080)">☁️</div>
-        <div class="post-caption">AWS EC2 deployment successful! 🎉</div>
-        <div class="post-actions">
-          <span>❤️ 18 likes</span>
-          <span>💬 5 comments</span>
-          <span>➕ Follow</span>
-        </div>
-      </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="loginPass" placeholder="Enter your password">
     </div>
+    <button class="btn-main" onclick="doLogin()">Sign In</button>
+    <p class="auth-switch">Don't have an account? <a onclick="showSignup()">Sign Up</a></p>
   </div>
-</section>
+</div>
 
-<section id="features">
-  <div class="section-header">
-    <span class="section-tag">✨ What We Offer</span>
-    <h2>App Features</h2>
+<!-- ═══════════ SIGNUP PAGE ═══════════ -->
+<div class="auth-screen" id="signupScreen">
+  <div class="auth-box">
+    <div class="auth-logo">
+      <div class="logo-text">Heyd Media</div>
+      <p>Join millions sharing moments</p>
+    </div>
+    <h2>Create account ✨</h2>
+    <p class="sub">Start sharing today</p>
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" id="regName" placeholder="Your full name">
+    </div>
+    <div class="form-group">
+      <label>Username</label>
+      <input type="text" id="regUser" placeholder="Choose a username">
+    </div>
+    <div class="form-group">
+      <label>Email</label>
+      <input type="email" id="regEmail" placeholder="Your email address">
+    </div>
+    <div class="form-group">
+      <label>Password</label>
+      <input type="password" id="regPass" placeholder="Create a password">
+    </div>
+    <button class="btn-main" onclick="doSignup()">Create Account</button>
+    <p class="auth-switch">Already have an account? <a onclick="showLogin()">Sign In</a></p>
   </div>
-  <div class="features-grid">
-    <div class="feature-card"><div class="feature-icon">👤</div><h3>User Authentication</h3><p>Secure registration and login system with session management and password protection.</p></div>
-    <div class="feature-card"><div class="feature-icon">📸</div><h3>Photo & Video Upload</h3><p>Share your moments by uploading photos and videos directly to your feed.</p></div>
-    <div class="feature-card"><div class="feature-icon">❤️</div><h3>Like Posts</h3><p>Show appreciation for content by liking posts from people you follow.</p></div>
-    <div class="feature-card"><div class="feature-icon">💬</div><h3>Comments</h3><p>Engage with posts by leaving comments and starting conversations.</p></div>
-    <div class="feature-card"><div class="feature-icon">➕</div><h3>Follow System</h3><p>Follow and unfollow users to curate your personalized feed.</p></div>
-    <div class="feature-card"><div class="feature-icon">📋</div><h3>User Profiles</h3><p>View user profiles with all their posts, followers and following count.</p></div>
-    <div class="feature-card"><div class="feature-icon">📰</div><h3>Live Feed</h3><p>Real-time feed showing latest posts from all users in the platform.</p></div>
-    <div class="feature-card"><div class="feature-icon">🚀</div><h3>CI/CD Deployment</h3><p>Automated deployment using Jenkins pipeline with Docker on AWS EC2.</p></div>
-  </div>
-</section>
+</div>
 
-<section id="tech">
-  <div class="section-header">
-    <span class="section-tag">🛠️ Built With</span>
-    <h2>Technology Stack</h2>
-  </div>
-  <div class="tech-grid">
-    <div class="tech-card"><span class="t-icon">🐍</span><span class="t-name">Python</span><span class="t-role">Language</span></div>
-    <div class="tech-card"><span class="t-icon">🌶️</span><span class="t-name">Flask</span><span class="t-role">Framework</span></div>
-    <div class="tech-card"><span class="t-icon">🎯</span><span class="t-name">Django</span><span class="t-role">Backend</span></div>
-    <div class="tech-card"><span class="t-icon">⚡</span><span class="t-name">JavaScript</span><span class="t-role">Frontend</span></div>
-    <div class="tech-card"><span class="t-icon">🌐</span><span class="t-name">HTML5</span><span class="t-role">Markup</span></div>
-    <div class="tech-card"><span class="t-icon">🎨</span><span class="t-name">CSS3</span><span class="t-role">Styling</span></div>
-    <div class="tech-card"><span class="t-icon">🗄️</span><span class="t-name">MySQL</span><span class="t-role">Database</span></div>
-    <div class="tech-card"><span class="t-icon">☁️</span><span class="t-name">AWS EC2</span><span class="t-role">Cloud</span></div>
-    <div class="tech-card"><span class="t-icon">🐳</span><span class="t-name">Docker</span><span class="t-role">Container</span></div>
-    <div class="tech-card"><span class="t-icon">⚙️</span><span class="t-name">Jenkins</span><span class="t-role">CI/CD</span></div>
-    <div class="tech-card"><span class="t-icon">🔍</span><span class="t-name">SonarQube</span><span class="t-role">Code Quality</span></div>
-    <div class="tech-card"><span class="t-icon">🐙</span><span class="t-name">GitHub</span><span class="t-role">Version Control</span></div>
-  </div>
-</section>
+<!-- ═══════════ MAIN APP ═══════════ -->
+<div id="app">
 
-<section id="preview">
-  <div class="section-header">
-    <span class="section-tag">👀 App Preview</span>
-    <h2>See It In Action</h2>
-  </div>
-  <div class="preview-grid">
-    <div class="preview-box">
-      <h3>📱 Login</h3>
-      <div class="form-group">
-        <label class="form-label">Email Address</label>
-        <input type="email" class="form-input" placeholder="hariarava41@gmail.com">
-      </div>
-      <div class="form-group">
-        <label class="form-label">Password</label>
-        <input type="password" class="form-input" placeholder="••••••••">
-      </div>
-      <button class="btn-pink" style="width:100%;justify-content:center;padding:13px"
-        onclick="document.getElementById('login-msg').style.display='block'">
-        Login to Heyd Media
-      </button>
-      <div class="success-msg" id="login-msg">✅ Login Successful! Welcome back!</div>
-      <div class="divider">or</div>
-      <button class="btn-ghost" style="width:100%;text-align:center;padding:13px;cursor:pointer"
-        onclick="document.getElementById('signup-msg').style.display='block'">
-        Create New Account
-      </button>
-      <div class="success-msg" id="signup-msg">🎉 Account Created! Welcome to Heyd Media!</div>
-      <div class="switch-text">By signing up you agree to our <a href="#">Terms</a></div>
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-logo">Heyd Media</div>
+
+    <div class="nav-item active" onclick="showPage('feed',this)">
+      <span class="nav-icon">🏠</span> Home
+    </div>
+    <div class="nav-item" onclick="showPage('explore',this)">
+      <span class="nav-icon">🔍</span> Explore
+    </div>
+    <div class="nav-item" onclick="showPage('notifications',this)">
+      <span class="nav-icon">🔔</span> Notifications
+      <span class="notif-badge" id="notifBadge">3</span>
+    </div>
+    <div class="nav-item" onclick="showPage('profile',this)">
+      <span class="nav-icon">👤</span> Profile
+    </div>
+    <div class="nav-item" onclick="showPage('settings',this)">
+      <span class="nav-icon">⚙️</span> Settings
     </div>
 
-    <div class="preview-box">
-      <h3>📰 Live Feed</h3>
-      <div class="feed-preview">
-        <div class="feed-post">
-          <div class="feed-post-header">
-            <div class="feed-avatar">H</div>
-            <div>
-              <div class="feed-username">harivasanth</div>
-              <div class="feed-time">Just now</div>
+    <div class="sidebar-user" onclick="showPage('profile', document.querySelector('.nav-item:nth-child(5)'))">
+      <div class="s-avatar" id="sidebarAvatar">H</div>
+      <div>
+        <div class="s-name" id="sidebarName">Harivasanth</div>
+        <div class="s-handle" id="sidebarHandle">@harivasanth</div>
+      </div>
+      <span class="s-logout" onclick="event.stopPropagation();doLogout()" title="Logout">↪</span>
+    </div>
+  </div>
+
+  <!-- Main -->
+  <div class="main">
+
+    <!-- ── FEED PAGE ── -->
+    <div class="page active" id="feedPage" style="max-width:960px;margin:0 auto;">
+      <div class="feed-layout">
+        <div class="feed-col">
+
+          <!-- Stories -->
+          <div class="stories-bar">
+            <div class="story" onclick="showToast('Your story coming soon!')">
+              <div class="story-ring add">
+                <div class="story-inner">➕</div>
+              </div>
+              <span class="story-name">Your Story</span>
+            </div>
+            <div class="story">
+              <div class="story-ring">
+                <div class="story-inner">🚀</div>
+              </div>
+              <span class="story-name">devhari</span>
+            </div>
+            <div class="story">
+              <div class="story-ring">
+                <div class="story-inner">☁️</div>
+              </div>
+              <span class="story-name">karthik</span>
+            </div>
+            <div class="story">
+              <div class="story-ring">
+                <div class="story-inner">🐍</div>
+              </div>
+              <span class="story-name">pydev</span>
+            </div>
+            <div class="story">
+              <div class="story-ring">
+                <div class="story-inner">🎯</div>
+              </div>
+              <span class="story-name">techie</span>
             </div>
           </div>
-          <div class="feed-img" style="background:linear-gradient(135deg,#1a0830,#3a0060)">🚀</div>
-          <div class="feed-caption">Just deployed my DevOps project on AWS! 🎉</div>
-          <div class="feed-actions">
-            <span onclick="this.textContent='❤️ 25 likes'">❤️ 24 likes</span>
-            <span>💬 8 comments</span>
-            <span>↗️ Share</span>
-          </div>
-        </div>
-        <div class="feed-post">
-          <div class="feed-post-header">
-            <div class="feed-avatar" style="background:#8b5cf6">K</div>
-            <div>
-              <div class="feed-username">karthikeya</div>
-              <div class="feed-time">5 mins ago</div>
+
+          <!-- Create Post -->
+          <div class="create-box">
+            <div class="create-input-row">
+              <div class="s-avatar" id="createAvatar" style="width:38px;height:38px;font-size:15px;">H</div>
+              <input class="create-input" id="postInput" placeholder="Share something with your friends...">
+            </div>
+            <div class="emoji-row" id="emojiRow" style="display:none;">
+              <span class="emoji-pick" onclick="addEmoji('🚀')">🚀</span>
+              <span class="emoji-pick" onclick="addEmoji('☁️')">☁️</span>
+              <span class="emoji-pick" onclick="addEmoji('🐍')">🐍</span>
+              <span class="emoji-pick" onclick="addEmoji('💻')">💻</span>
+              <span class="emoji-pick" onclick="addEmoji('🎉')">🎉</span>
+              <span class="emoji-pick" onclick="addEmoji('❤️')">❤️</span>
+              <span class="emoji-pick" onclick="addEmoji('🔥')">🔥</span>
+              <span class="emoji-pick" onclick="addEmoji('✅')">✅</span>
+              <span class="emoji-pick" onclick="addEmoji('😊')">😊</span>
+              <span class="emoji-pick" onclick="addEmoji('👍')">👍</span>
+              <span class="emoji-pick" onclick="addEmoji('🎯')">🎯</span>
+              <span class="emoji-pick" onclick="addEmoji('⚙️')">⚙️</span>
+            </div>
+            <div class="create-actions">
+              <button class="create-btn media" onclick="toggleEmoji()">😊 Emoji</button>
+              <button class="create-btn media" onclick="showToast('Photo upload requires backend server')">📸 Photo</button>
+              <button class="create-btn media" onclick="showToast('Video upload requires backend server')">🎬 Video</button>
+              <button class="create-btn post" onclick="createPost()">Post</button>
             </div>
           </div>
-          <div class="feed-img" style="background:linear-gradient(135deg,#0d2040,#1a4080)">☁️</div>
-          <div class="feed-caption">AWS Cloud setup complete! Docker running 🐳</div>
-          <div class="feed-actions">
-            <span onclick="this.textContent='❤️ 19 likes'">❤️ 18 likes</span>
-            <span>💬 5 comments</span>
-            <span>↗️ Share</span>
+
+          <!-- Posts Feed -->
+          <div id="postsContainer"></div>
+        </div>
+
+        <!-- Right sidebar -->
+        <div class="right-sidebar">
+          <div class="widget">
+            <div class="widget-title">Suggested for you <a>See all</a></div>
+            <div id="suggestList"></div>
+          </div>
+          <div class="widget">
+            <div class="widget-title">Trending 🔥</div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+              <div onclick="showToast('#DevOps trending!')" style="cursor:pointer;padding:8px;border-radius:8px;" onmouseover="this.style.background='var(--light)'" onmouseout="this.style.background=''">
+                <div style="font-size:13px;font-weight:700;">#DevOps</div>
+                <div style="font-size:11px;color:var(--muted);">2.4K posts</div>
+              </div>
+              <div onclick="showToast('#Python trending!')" style="cursor:pointer;padding:8px;border-radius:8px;" onmouseover="this.style.background='var(--light)'" onmouseout="this.style.background=''">
+                <div style="font-size:13px;font-weight:700;">#Python</div>
+                <div style="font-size:11px;color:var(--muted);">1.8K posts</div>
+              </div>
+              <div onclick="showToast('#CloudComputing trending!')" style="cursor:pointer;padding:8px;border-radius:8px;" onmouseover="this.style.background='var(--light)'" onmouseout="this.style.background=''">
+                <div style="font-size:13px;font-weight:700;">#CloudComputing</div>
+                <div style="font-size:11px;color:var(--muted);">1.2K posts</div>
+              </div>
+              <div onclick="showToast('#AWS trending!')" style="cursor:pointer;padding:8px;border-radius:8px;" onmouseover="this.style.background='var(--light)'" onmouseout="this.style.background=''">
+                <div style="font-size:13px;font-weight:700;">#AWS</div>
+                <div style="font-size:11px;color:var(--muted);">980 posts</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
+
+    <!-- ── EXPLORE PAGE ── -->
+    <div class="page" id="explorePage">
+      <div class="page-header">
+        <div>
+          <h1>Explore</h1>
+          <div class="sub">Discover new content</div>
+        </div>
+        <input style="padding:10px 16px;border:1.5px solid var(--border);border-radius:24px;
+          font-size:14px;width:240px;outline:none;font-family:var(--font);"
+          placeholder="🔍  Search..." onfocus="this.style.borderColor='var(--pink)'"
+          onblur="this.style.borderColor='var(--border)'">
+      </div>
+      <div class="explore-grid" id="exploreGrid"></div>
+    </div>
+
+    <!-- ── NOTIFICATIONS PAGE ── -->
+    <div class="page" id="notificationsPage">
+      <div class="page-header">
+        <div>
+          <h1>Notifications</h1>
+          <div class="sub">Stay up to date</div>
+        </div>
+        <button onclick="markAllRead()" style="padding:9px 18px;background:var(--pink-dim);
+          color:var(--pink);border:none;border-radius:10px;font-size:13px;font-weight:700;
+          font-family:var(--font);cursor:pointer;">Mark all read</button>
+      </div>
+      <div class="notif-list" id="notifList"></div>
+    </div>
+
+    <!-- ── PROFILE PAGE ── -->
+    <div class="page" id="profilePage">
+      <div class="profile-header">
+        <div class="profile-top">
+          <div class="profile-big-av" id="profileBigAv"
+            style="background:linear-gradient(135deg,#e91e8c,#9b59b6);">H</div>
+          <div style="flex:1;">
+            <h2 id="profileName">Harivasanth Arava</h2>
+            <div class="profile-handle" id="profileHandle">@harivasanth</div>
+            <div class="profile-bio" id="profileBio">
+              Fresher DevOps & Cloud Engineer 🚀<br>
+              MCA Cloud Computing · Jain University, Bengaluru<br>
+              Python | AWS | Docker | Jenkins | Linux
+            </div>
+            <div class="profile-stats">
+              <div class="p-stat">
+                <span class="p-stat-num" id="postCount">0</span>
+                <span class="p-stat-lbl">Posts</span>
+              </div>
+              <div class="p-stat">
+                <span class="p-stat-num" id="followerCount">248</span>
+                <span class="p-stat-lbl">Followers</span>
+              </div>
+              <div class="p-stat">
+                <span class="p-stat-num">186</span>
+                <span class="p-stat-lbl">Following</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="profile-actions">
+          <button class="edit-btn" onclick="showEditProfile()">✏️ Edit Profile</button>
+          <button class="edit-btn" onclick="showToast('Profile link copied!')">🔗 Share Profile</button>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div style="max-width:800px;margin:0 auto 16px;display:flex;gap:0;
+        background:var(--white);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
+        <button onclick="setProfileTab('posts',this)" id="tabPosts"
+          style="flex:1;padding:12px;border:none;background:var(--pink);color:#fff;
+          font-size:14px;font-weight:700;font-family:var(--font);cursor:pointer;">
+          📸 Posts
+        </button>
+        <button onclick="setProfileTab('liked',this)" id="tabLiked"
+          style="flex:1;padding:12px;border:none;background:#fff;color:var(--muted);
+          font-size:14px;font-weight:500;font-family:var(--font);cursor:pointer;">
+          ❤️ Liked
+        </button>
+      </div>
+
+      <div class="profile-grid" id="profileGrid"></div>
+      <div id="likedGrid" style="display:none;" class="profile-grid"></div>
+    </div>
+
+    <!-- ── SETTINGS PAGE ── -->
+    <div class="page" id="settingsPage">
+      <div class="page-header">
+        <div>
+          <h1>Settings</h1>
+          <div class="sub">Manage your account</div>
+        </div>
+      </div>
+      <div class="settings-wrap">
+
+        <!-- Account -->
+        <div class="settings-section">
+          <h3>👤 Account Information</h3>
+          <div class="form-group">
+            <label>Display Name</label>
+            <input class="settings-input" id="settingName" placeholder="Your display name">
+          </div>
+          <div class="form-group" style="margin-top:10px;">
+            <label>Username</label>
+            <input class="settings-input" id="settingUsername" placeholder="@username">
+          </div>
+          <div class="form-group" style="margin-top:10px;">
+            <label>Bio</label>
+            <input class="settings-input" id="settingBio" placeholder="Tell people about yourself">
+          </div>
+          <div class="form-group" style="margin-top:10px;">
+            <label>Email</label>
+            <input class="settings-input" id="settingEmail" placeholder="your@email.com">
+          </div>
+          <button class="save-btn" onclick="saveProfile()">💾 Save Changes</button>
+        </div>
+
+        <!-- Privacy -->
+        <div class="settings-section">
+          <h3>🔒 Privacy & Security</h3>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Private Account</div>
+              <div class="setting-desc">Only approved followers see your posts</div>
+            </div>
+            <div class="toggle" id="togglePrivate" onclick="toggleSetting(this,'Account set to private','Account set to public')"></div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Show Online Status</div>
+              <div class="setting-desc">Let others see when you are active</div>
+            </div>
+            <div class="toggle on" id="toggleOnline" onclick="toggleSetting(this,'Online status hidden','Online status visible')"></div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Allow Comments</div>
+              <div class="setting-desc">Let people comment on your posts</div>
+            </div>
+            <div class="toggle on" id="toggleComments" onclick="toggleSetting(this,'Comments disabled','Comments enabled')"></div>
+          </div>
+          <div class="setting-row">
+            <div>
+              <div class="setting-label">Two-Factor Authentication</div>
+              <div class="setting-desc">Add extra security to your account</div>
+            </div>
+            <div class="toggle" id="toggle2FA" onclick="toggleSetting(this,'2FA enabled ✅','2FA disabled')"></div>
+          </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-section">
+          <h3>🔔 Notifications</h3>
+          <div class="setting-row">
+            <div><div class="setting-label">Likes</div><div class="setting-desc">When someone likes your post</div></div>
+            <div class="toggle on" onclick="toggleSetting(this,'Like notifications off','Like notifications on')"></div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">Comments</div><div class="setting-desc">When someone comments on your post</div></div>
+            <div class="toggle on" onclick="toggleSetting(this,'Comment notifications off','Comment notifications on')"></div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">New Followers</div><div class="setting-desc">When someone follows you</div></div>
+            <div class="toggle on" onclick="toggleSetting(this,'Follow notifications off','Follow notifications on')"></div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">Messages</div><div class="setting-desc">When you receive a direct message</div></div>
+            <div class="toggle" onclick="toggleSetting(this,'Message notifications off','Message notifications on')"></div>
+          </div>
+        </div>
+
+        <!-- Appearance -->
+        <div class="settings-section">
+          <h3>🎨 Appearance</h3>
+          <div class="setting-row">
+            <div><div class="setting-label">Dark Mode</div><div class="setting-desc">Switch to dark theme</div></div>
+            <div class="toggle" id="darkToggle" onclick="toggleDark(this)"></div>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">Compact View</div><div class="setting-desc">Show more content on screen</div></div>
+            <div class="toggle" onclick="toggleSetting(this,'Compact view on','Compact view off')"></div>
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="settings-section">
+          <h3>🔑 Change Password</h3>
+          <div class="form-group">
+            <label>Current Password</label>
+            <input class="settings-input" type="password" placeholder="Enter current password">
+          </div>
+          <div class="form-group" style="margin-top:10px;">
+            <label>New Password</label>
+            <input class="settings-input" type="password" placeholder="Enter new password">
+          </div>
+          <div class="form-group" style="margin-top:10px;">
+            <label>Confirm New Password</label>
+            <input class="settings-input" type="password" placeholder="Confirm new password">
+          </div>
+          <button class="save-btn" onclick="showToast('Password updated successfully!')">🔑 Update Password</button>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="settings-section">
+          <h3>⚠️ Danger Zone</h3>
+          <div class="setting-row">
+            <div><div class="setting-label">Deactivate Account</div><div class="setting-desc">Temporarily hide your profile</div></div>
+            <button class="danger-btn" onclick="showToast('Account deactivation requires confirmation')">Deactivate</button>
+          </div>
+          <div class="setting-row">
+            <div><div class="setting-label">Delete Account</div><div class="setting-desc">Permanently delete all your data</div></div>
+            <button class="danger-btn" onclick="showToast('Account deletion is permanent!')">Delete</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- end main -->
+</div><!-- end app -->
+
+<!-- Edit Profile Modal -->
+<div class="modal-overlay" id="editModal">
+  <div class="modal">
+    <h3>Edit Profile</h3>
+    <p class="modal-sub">Update your profile information</p>
+    <div class="form-group">
+      <label>Display Name</label>
+      <input class="settings-input" id="editName" placeholder="Display name">
+    </div>
+    <div class="form-group" style="margin-top:10px;">
+      <label>Bio</label>
+      <input class="settings-input" id="editBio" placeholder="Bio">
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeModal()">Cancel</button>
+      <button class="modal-confirm" onclick="saveEditProfile()">Save Changes</button>
+    </div>
   </div>
-</section>
+</div>
 
-<footer>
-  <div class="footer-logo">📱 Heyd Media</div>
-  <p>Full-Stack Social Media Platform · Python Flask · Django · MySQL · AWS · Docker</p>
-  <p style="margin-top:10px">© 2025 Heyd Media App | Developed by
-    <a href="https://github.com/harivasantharava41-rgb/Heyd-media-app">Harivasanth Arava</a>
-  </p>
-  <p style="margin-top:6px;font-size:11px">MCA Cloud Computing · Jain University, Bengaluru</p>
-</footer>
+<!-- Toast -->
+<div class="toast" id="toast"></div>
 
-<a href="#home" class="scroll-top">↑</a>
+<script>
+// ═══════ STATE ═══════
+let currentUser = null;
+let users = JSON.parse(localStorage.getItem('hm_users') || '[]');
+let posts = JSON.parse(localStorage.getItem('hm_posts') || '[]');
 
+// Seed sample posts if empty
+if(posts.length === 0){
+  posts = [
+    {id:1,user:'devhari',avatar:'🚀',color:'#e91e8c',caption:'Just deployed my first CI/CD pipeline using Jenkins and Docker! 🚀 Automated everything from code push to deployment. #DevOps #Jenkins',emoji:'🚀',likes:24,liked:false,comments:[{user:'karthik',av:'☁️',color:'#3498db',text:'Amazing work! How long did it take?',time:'2h'},{user:'pydev',av:'🐍',color:'#2ecc71',text:'This is so cool! 🔥',time:'1h'}],time:'3 hours ago'},
+    {id:2,user:'karthik',avatar:'☁️',color:'#3498db',caption:'Successfully set up AWS EC2 with Docker containers! Cloud deployment is incredible ☁️ #AWS #Cloud',emoji:'☁️',likes:18,liked:false,comments:[{user:'devhari',av:'🚀',color:'#e91e8c',text:'Great setup! What region did you use?',time:'1h'}],time:'5 hours ago'},
+    {id:3,user:'pydev',avatar:'🐍',color:'#2ecc71',caption:'Python Flask app running smoothly with MySQL database 🐍 Built a REST API in just 2 hours! #Python #Flask',emoji:'🐍',likes:31,liked:false,comments:[],time:'8 hours ago'},
+    {id:4,user:'techie',avatar:'🎯',color:'#9b59b6',caption:'Learning Kubernetes for container orchestration 🎯 The future of deployment is here! #Kubernetes #DevOps',emoji:'🎯',likes:15,liked:false,comments:[{user:'karthik',av:'☁️',color:'#3498db',text:'Kubernetes is a game changer!',time:'30min'}],time:'1 day ago'},
+  ];
+  savePosts();
+}
+
+const COLORS = ['#e91e8c','#3498db','#2ecc71','#9b59b6','#e67e22','#e74c3c','#1abc9c','#f39c12'];
+
+function savePosts(){ localStorage.setItem('hm_posts', JSON.stringify(posts)); }
+function saveUsers(){ localStorage.setItem('hm_users', JSON.stringify(users)); }
+
+function getColor(name){
+  let hash = 0;
+  for(let c of name) hash = c.charCodeAt(0) + hash * 31;
+  return COLORS[Math.abs(hash) % COLORS.length];
+}
+
+// ═══════ AUTH ═══════
+function showSignup(){ document.getElementById('loginScreen').classList.remove('active'); document.getElementById('signupScreen').classList.add('active'); }
+function showLogin(){ document.getElementById('signupScreen').classList.remove('active'); document.getElementById('loginScreen').classList.add('active'); }
+
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value.trim();
+  if(!u||!p){ showToast('Please fill all fields'); return; }
+
+  // Check saved users
+  let found = users.find(x => (x.username===u||x.email===u) && x.password===p);
+
+  // Allow demo login
+  if(!found && u==='demo' && p==='demo'){
+    found = {username:'harivasanth',name:'Harivasanth Arava',email:'demo@heyd.com',
+             password:'demo',bio:'Fresher DevOps & Cloud Engineer 🚀\nMCA Cloud Computing · Jain University',color:'#e91e8c'};
+  }
+
+  if(!found){ showToast('Invalid credentials. Try demo/demo'); return; }
+
+  currentUser = found;
+  loadApp();
+}
+
+function doSignup(){
+  const name = document.getElementById('regName').value.trim();
+  const user = document.getElementById('regUser').value.trim();
+  const email = document.getElementById('regEmail').value.trim();
+  const pass = document.getElementById('regPass').value.trim();
+
+  if(!name||!user||!email||!pass){ showToast('Please fill all fields'); return; }
+  if(users.find(x=>x.username===user)){ showToast('Username already taken'); return; }
+  if(pass.length < 6){ showToast('Password must be at least 6 characters'); return; }
+
+  const newUser = {username:user,name,email,password:pass,bio:'Hey, I just joined Heyd Media! 👋',color:getColor(user)};
+  users.push(newUser);
+  saveUsers();
+  currentUser = newUser;
+  loadApp();
+}
+
+function doLogout(){
+  currentUser = null;
+  document.getElementById('app').classList.remove('active');
+  document.getElementById('app').style.display = 'none';
+  document.getElementById('loginScreen').classList.add('active');
+  showToast('Logged out successfully');
+}
+
+// ═══════ APP ═══════
+function loadApp(){
+  document.getElementById('loginScreen').classList.remove('active');
+  document.getElementById('signupScreen').classList.remove('active');
+  const app = document.getElementById('app');
+  app.style.display = 'flex';
+  app.classList.add('active');
+
+  // Update sidebar
+  const letter = currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('sidebarAvatar').textContent = letter;
+  document.getElementById('sidebarAvatar').style.background = currentUser.color || '#e91e8c';
+  document.getElementById('sidebarName').textContent = currentUser.name;
+  document.getElementById('sidebarHandle').textContent = '@' + currentUser.username;
+  document.getElementById('createAvatar').textContent = letter;
+  document.getElementById('createAvatar').style.background = currentUser.color || '#e91e8c';
+
+  // Settings fields
+  document.getElementById('settingName').value = currentUser.name;
+  document.getElementById('settingUsername').value = currentUser.username;
+  document.getElementById('settingBio').value = currentUser.bio || '';
+  document.getElementById('settingEmail').value = currentUser.email || '';
+
+  renderFeed();
+  renderSuggestions();
+  renderExplore();
+  renderNotifications();
+  renderProfile();
+}
+
+// ═══════ FEED ═══════
+function renderFeed(){
+  const container = document.getElementById('postsContainer');
+  const myPosts = posts.filter(p => p.user === currentUser.username);
+  const allPosts = [...posts].sort((a,b) => b.id - a.id);
+
+  container.innerHTML = allPosts.map(post => `
+    <div class="post-card" id="post-${post.id}">
+      <div class="post-header">
+        <div class="post-avatar" style="background:${post.color||getColor(post.user)}">${post.avatar||post.user.charAt(0).toUpperCase()}</div>
+        <div class="post-user-info">
+          <div class="post-username">${post.user}</div>
+          <div class="post-time">${post.time||'Just now'}</div>
+        </div>
+        ${post.user===currentUser.username?`<span class="post-menu" onclick="deletePost(${post.id})">🗑️</span>`:'<span class="post-menu">···</span>'}
+      </div>
+      <div class="post-media-emoji">${post.emoji||'📝'}</div>
+      <div class="post-body">
+        <div class="post-caption"><span class="username-tag">${post.user}</span> ${post.caption}</div>
+        <div class="post-actions">
+          <button class="action-btn ${post.liked?'liked':''}" onclick="toggleLike(${post.id})">
+            <span class="icon">${post.liked?'❤️':'🤍'}</span> ${post.likes}
+          </button>
+          <button class="action-btn" onclick="focusComment(${post.id})">
+            <span class="icon">💬</span> ${post.comments.length}
+          </button>
+          <button class="action-btn" onclick="showToast('Post shared!')">
+            <span class="icon">↗️</span> Share
+          </button>
+          <button class="action-btn" onclick="showToast('Post saved!')">
+            <span class="icon">🔖</span>
+          </button>
+        </div>
+        ${post.likes>0?`<div class="post-likes">${post.likes} like${post.likes!==1?'s':''}</div>`:''}
+        ${post.comments.length>0?`
+          <div class="comments-list">
+            ${post.comments.map(c=>`
+              <div class="comment-item">
+                <div class="comment-av" style="background:${c.color||getColor(c.user)}">${c.av||c.user.charAt(0).toUpperCase()}</div>
+                <div class="comment-content">
+                  <span class="comment-user">${c.user}</span>
+                  <span class="comment-text"> ${c.text}</span>
+                  <div class="comment-time">${c.time||'now'}</div>
+                </div>
+              </div>`).join('')}
+          </div>`:''}
+        <div class="post-comment-input" id="commentBox-${post.id}">
+          <input class="comment-in" id="commentIn-${post.id}" placeholder="Add a comment..."
+            onkeydown="if(event.key==='Enter')submitComment(${post.id})">
+          <button class="comment-send" onclick="submitComment(${post.id})">➤</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleLike(id){
+  const post = posts.find(p=>p.id===id);
+  if(!post) return;
+  post.liked = !post.liked;
+  post.likes += post.liked ? 1 : -1;
+  savePosts();
+  renderFeed();
+  if(post.liked) showToast('❤️ Liked!');
+}
+
+function submitComment(id){
+  const input = document.getElementById(`commentIn-${id}`);
+  const text = input.value.trim();
+  if(!text) return;
+  const post = posts.find(p=>p.id===id);
+  if(!post) return;
+  post.comments.push({
+    user: currentUser.username,
+    av: currentUser.name.charAt(0).toUpperCase(),
+    color: currentUser.color,
+    text, time:'now'
+  });
+  savePosts();
+  renderFeed();
+  renderProfile();
+  showToast('💬 Comment added!');
+  setTimeout(()=>{ const el=document.getElementById(`commentIn-${id}`); if(el) el.focus(); },100);
+}
+
+function focusComment(id){
+  const el = document.getElementById(`commentIn-${id}`);
+  if(el){ el.scrollIntoView({behavior:'smooth',block:'center'}); el.focus(); }
+}
+
+function deletePost(id){
+  if(!confirm('Delete this post?')) return;
+  posts = posts.filter(p=>p.id!==id);
+  savePosts();
+  renderFeed();
+  renderProfile();
+  showToast('🗑️ Post deleted');
+}
+
+function createPost(){
+  const input = document.getElementById('postInput');
+  const text = input.value.trim();
+  if(!text){ showToast('Write something first!'); return; }
+
+  const emojis = ['🚀','☁️','🐍','💻','🎉','🔥','✅','🎯','⚙️','🌟','💡','🎨'];
+  const em = emojis[Math.floor(Math.random()*emojis.length)];
+
+  const newPost = {
+    id: Date.now(),
+    user: currentUser.username,
+    avatar: currentUser.name.charAt(0).toUpperCase(),
+    color: currentUser.color,
+    caption: text,
+    emoji: em,
+    likes: 0, liked: false,
+    comments: [],
+    time: 'Just now'
+  };
+  posts.unshift(newPost);
+  savePosts();
+  input.value = '';
+  document.getElementById('emojiRow').style.display = 'none';
+  renderFeed();
+  renderProfile();
+  showToast('✅ Post published!');
+}
+
+function addEmoji(em){
+  const input = document.getElementById('postInput');
+  input.value += em;
+  input.focus();
+}
+
+function toggleEmoji(){
+  const row = document.getElementById('emojiRow');
+  row.style.display = row.style.display==='none' ? 'flex' : 'none';
+}
+
+// ═══════ SUGGESTIONS ═══════
+function renderSuggestions(){
+  const suggestions = [
+    {name:'CloudDev',handle:'@clouddev',color:'#3498db',av:'☁️'},
+    {name:'PyEngineer',handle:'@pyeng',color:'#2ecc71',av:'🐍'},
+    {name:'DevOpsGuru',handle:'@devguru',color:'#9b59b6',av:'⚙️'},
+    {name:'TechHari',handle:'@techari',color:'#e67e22',av:'💡'},
+  ];
+  document.getElementById('suggestList').innerHTML = suggestions.map(u=>`
+    <div class="suggest-user">
+      <div class="su-av" style="background:${u.color}">${u.av}</div>
+      <div>
+        <div class="su-name">${u.name}</div>
+        <div class="su-handle">${u.handle}</div>
+      </div>
+      <button class="follow-btn" onclick="followUser(this,'${u.name}')">Follow</button>
+    </div>`).join('');
+}
+
+function followUser(btn, name){
+  if(btn.classList.contains('following')){
+    btn.classList.remove('following');
+    btn.textContent = 'Follow';
+    showToast(`Unfollowed ${name}`);
+  } else {
+    btn.classList.add('following');
+    btn.textContent = 'Following ✓';
+    showToast(`Following ${name}! 🎉`);
+  }
+}
+
+// ═══════ EXPLORE ═══════
+function renderExplore(){
+  const items = [
+    {emoji:'🚀',bg:'linear-gradient(135deg,#ff6b6b,#feca57)',likes:142,comments:28},
+    {emoji:'☁️',bg:'linear-gradient(135deg,#48dbfb,#ff9ff3)',likes:89,comments:15},
+    {emoji:'🐍',bg:'linear-gradient(135deg,#1dd1a1,#10ac84)',likes:203,comments:44},
+    {emoji:'⚙️',bg:'linear-gradient(135deg,#5f27cd,#341f97)',likes:67,comments:12},
+    {emoji:'💻',bg:'linear-gradient(135deg,#ff9f43,#ee5a24)',likes:178,comments:33},
+    {emoji:'🎯',bg:'linear-gradient(135deg,#e91e8c,#9b59b6)',likes:95,comments:19},
+    {emoji:'🔥',bg:'linear-gradient(135deg,#fd7272,#e17055)',likes:312,comments:56},
+    {emoji:'🌟',bg:'linear-gradient(135deg,#fdcb6e,#e17055)',likes:124,comments:22},
+    {emoji:'🎨',bg:'linear-gradient(135deg,#a29bfe,#6c5ce7)',likes:88,comments:17},
+    {emoji:'🏆',bg:'linear-gradient(135deg,#ffeaa7,#fdcb6e)',likes:256,comments:41},
+    {emoji:'💡',bg:'linear-gradient(135deg,#55efc4,#00b894)',likes:145,comments:29},
+    {emoji:'🚀',bg:'linear-gradient(135deg,#74b9ff,#0984e3)',likes:199,comments:38},
+  ];
+  document.getElementById('exploreGrid').innerHTML = items.map(item=>`
+    <div class="explore-item" onclick="showToast('❤️ ${item.likes} likes · 💬 ${item.comments} comments')">
+      <div class="explore-img" style="background:${item.bg}">${item.emoji}</div>
+      <div class="explore-overlay">
+        <span>❤️ ${item.likes}</span>
+        <span>💬 ${item.comments}</span>
+      </div>
+    </div>`).join('');
+}
+
+// ═══════ NOTIFICATIONS ═══════
+const notifData = [
+  {av:'🚀',color:'#e91e8c',text:'<strong>devhari</strong> liked your post',time:'2m',unread:true,icon:'❤️'},
+  {av:'☁️',color:'#3498db',text:'<strong>karthik</strong> started following you',time:'15m',unread:true,icon:'👤'},
+  {av:'🐍',color:'#2ecc71',text:'<strong>pydev</strong> commented: "Amazing work!"',time:'1h',unread:true,icon:'💬'},
+  {av:'🎯',color:'#9b59b6',text:'<strong>techie</strong> liked your comment',time:'2h',unread:false,icon:'❤️'},
+  {av:'💡',color:'#e67e22',text:'<strong>cloudguru</strong> mentioned you in a post',time:'3h',unread:false,icon:'📣'},
+  {av:'⚙️',color:'#1abc9c',text:'<strong>devopsking</strong> started following you',time:'5h',unread:false,icon:'👤'},
+  {av:'🔥',color:'#e74c3c',text:'Your post got 50 likes! 🎉',time:'1d',unread:false,icon:'🎉'},
+];
+
+function renderNotifications(){
+  const badge = document.getElementById('notifBadge');
+  const unreadCount = notifData.filter(n=>n.unread).length;
+  badge.textContent = unreadCount;
+  badge.style.display = unreadCount > 0 ? 'block' : 'none';
+
+  document.getElementById('notifList').innerHTML = notifData.map((n,i)=>`
+    <div class="notif-item ${n.unread?'unread':''}" onclick="readNotif(${i},this)">
+      <div class="notif-av" style="background:${n.color}">${n.av}</div>
+      <div class="notif-text">${n.text}</div>
+      <div>
+        <div class="notif-time">${n.time}</div>
+        <div style="text-align:center;font-size:20px;margin-top:4px;">${n.icon}</div>
+      </div>
+    </div>`).join('');
+}
+
+function readNotif(i, el){
+  notifData[i].unread = false;
+  el.classList.remove('unread');
+  renderNotifications();
+}
+
+function markAllRead(){
+  notifData.forEach(n=>n.unread=false);
+  renderNotifications();
+  showToast('All notifications marked as read ✅');
+}
+
+// ═══════ PROFILE ═══════
+function renderProfile(){
+  if(!currentUser) return;
+  const myPosts = posts.filter(p => p.user === currentUser.username);
+  document.getElementById('postCount').textContent = myPosts.length;
+  document.getElementById('profileName').textContent = currentUser.name;
+  document.getElementById('profileHandle').textContent = '@' + currentUser.username;
+  document.getElementById('profileBio').textContent = currentUser.bio || '';
+  document.getElementById('profileBigAv').textContent = currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('profileBigAv').style.background = currentUser.color;
+
+  document.getElementById('profileGrid').innerHTML = myPosts.length > 0
+    ? myPosts.map(p=>`
+        <div class="pg-item" style="background:linear-gradient(135deg,${p.color||'#e91e8c'}22,${p.color||'#e91e8c'}44)"
+          onclick="showToast('❤️ ${p.likes} likes · 💬 ${p.comments.length} comments')">
+          <span style="font-size:48px">${p.emoji||'📝'}</span>
+          <div class="explore-overlay">
+            <span>❤️ ${p.likes}</span><span>💬 ${p.comments.length}</span>
+          </div>
+        </div>`).join('')
+    : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);">No posts yet. Share your first post! 🚀</div>';
+
+  const likedPosts = posts.filter(p=>p.liked);
+  document.getElementById('likedGrid').innerHTML = likedPosts.length > 0
+    ? likedPosts.map(p=>`
+        <div class="pg-item" style="background:linear-gradient(135deg,${p.color||'#e91e8c'}22,${p.color||'#e91e8c'}44)"
+          onclick="showToast('❤️ ${p.likes} likes')">
+          <span style="font-size:48px">${p.emoji||'📝'}</span>
+          <div class="explore-overlay"><span>❤️ ${p.likes}</span></div>
+        </div>`).join('')
+    : '<div style="grid-column:1/-1;text-align:center;padding:40px;color:var(--muted);">No liked posts yet ❤️</div>';
+}
+
+function setProfileTab(tab, btn){
+  document.getElementById('profileGrid').style.display = tab==='posts' ? 'grid' : 'none';
+  document.getElementById('likedGrid').style.display = tab==='liked' ? 'grid' : 'none';
+  document.getElementById('tabPosts').style.background = tab==='posts' ? 'var(--pink)' : '#fff';
+  document.getElementById('tabPosts').style.color = tab==='posts' ? '#fff' : 'var(--muted)';
+  document.getElementById('tabLiked').style.background = tab==='liked' ? 'var(--pink)' : '#fff';
+  document.getElementById('tabLiked').style.color = tab==='liked' ? '#fff' : 'var(--muted)';
+}
+
+// ═══════ SETTINGS ═══════
+function saveProfile(){
+  if(!currentUser) return;
+  currentUser.name = document.getElementById('settingName').value.trim() || currentUser.name;
+  currentUser.username = document.getElementById('settingUsername').value.trim() || currentUser.username;
+  currentUser.bio = document.getElementById('settingBio').value.trim();
+  currentUser.email = document.getElementById('settingEmail').value.trim();
+
+  // Update in users array
+  const idx = users.findIndex(u=>u.email===currentUser.email);
+  if(idx>=0) users[idx] = currentUser;
+  saveUsers();
+
+  document.getElementById('sidebarName').textContent = currentUser.name;
+  document.getElementById('sidebarHandle').textContent = '@' + currentUser.username;
+  document.getElementById('sidebarAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+  document.getElementById('createAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+  renderProfile();
+  showToast('✅ Profile saved!');
+}
+
+function toggleSetting(el, msgOn, msgOff){
+  el.classList.toggle('on');
+  showToast(el.classList.contains('on') ? msgOff : msgOn);
+}
+
+function toggleDark(el){
+  el.classList.toggle('on');
+  if(el.classList.contains('on')){
+    document.documentElement.style.setProperty('--bg','#1a1a1a');
+    document.documentElement.style.setProperty('--white','#242424');
+    document.documentElement.style.setProperty('--card','#242424');
+    document.documentElement.style.setProperty('--border','#333');
+    document.documentElement.style.setProperty('--text','#f0f0f0');
+    document.documentElement.style.setProperty('--light','#2a2a2a');
+    document.documentElement.style.setProperty('--muted','#aaa');
+    showToast('🌙 Dark mode on');
+  } else {
+    document.documentElement.style.setProperty('--bg','#fafafa');
+    document.documentElement.style.setProperty('--white','#ffffff');
+    document.documentElement.style.setProperty('--card','#ffffff');
+    document.documentElement.style.setProperty('--border','#efefef');
+    document.documentElement.style.setProperty('--text','#1a1a1a');
+    document.documentElement.style.setProperty('--light','#f5f5f5');
+    document.documentElement.style.setProperty('--muted','#8e8e8e');
+    showToast('☀️ Light mode on');
+  }
+}
+
+// ═══════ EDIT PROFILE MODAL ═══════
+function showEditProfile(){
+  document.getElementById('editName').value = currentUser.name;
+  document.getElementById('editBio').value = currentUser.bio || '';
+  document.getElementById('editModal').classList.add('active');
+}
+
+function closeModal(){
+  document.getElementById('editModal').classList.remove('active');
+}
+
+function saveEditProfile(){
+  currentUser.name = document.getElementById('editName').value.trim() || currentUser.name;
+  currentUser.bio = document.getElementById('editBio').value.trim();
+  renderProfile();
+  document.getElementById('sidebarName').textContent = currentUser.name;
+  document.getElementById('sidebarAvatar').textContent = currentUser.name.charAt(0).toUpperCase();
+  closeModal();
+  showToast('✅ Profile updated!');
+}
+
+// ═══════ NAVIGATION ═══════
+function showPage(name, el){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
+  document.getElementById(name+'Page').classList.add('active');
+  if(el) el.classList.add('active');
+
+  if(name==='notifications'){
+    document.getElementById('notifBadge').style.display='none';
+  }
+  if(name==='profile') renderProfile();
+  if(name==='settings'){
+    document.getElementById('settingName').value = currentUser?.name||'';
+    document.getElementById('settingUsername').value = currentUser?.username||'';
+    document.getElementById('settingBio').value = currentUser?.bio||'';
+    document.getElementById('settingEmail').value = currentUser?.email||'';
+  }
+}
+
+// ═══════ TOAST ═══════
+let toastTimer;
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 2500);
+}
+
+// Allow Enter key to login/signup
+document.getElementById('loginPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+document.getElementById('regPass').addEventListener('keydown',e=>{ if(e.key==='Enter') doSignup(); });
+document.getElementById('postInput').addEventListener('keydown',e=>{ if(e.key==='Enter'&&!e.shiftKey) createPost(); });
+</script>
 </body>
 </html>
